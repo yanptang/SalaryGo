@@ -46,8 +46,13 @@ def validate_allocation(plan: dict[str, Any], context: dict[str, Any]) -> list[d
     if post_total <= 0:
         errors.append({"code": "invalid_total", "message": "操作后组合总额无效"})
         return errors
+    candidate_limits = {
+        item["id"]: float(item.get("maximum_weight", context["limits"]["single_instrument"]))
+        for item in context.get("candidates", [])
+    }
     for asset_id, value in plan.get("post_instrument_values", {}).items():
-        if value / post_total > context["limits"]["single_instrument"] + 1e-9:
+        limit = candidate_limits.get(asset_id, context["limits"]["single_instrument"])
+        if value / post_total > limit + 1e-9:
             errors.append({"code": "instrument_limit", "message": f"{asset_id} 超过单一标的上限"})
     stock_total = plan.get("post_bucket_values", {}).get("individual_stock", 0)
     if stock_total / post_total > context["limits"]["individual_stocks_total"] + 1e-9:
@@ -120,7 +125,8 @@ def generate_allocation(context: dict[str, Any]) -> dict[str, Any]:
                 if budget_base <= 0 or remaining <= 0:
                     break
                 current_instrument = instrument_values.get(candidate["id"], 0.0)
-                instrument_headroom = max(0.0, context["limits"]["single_instrument"] * post_total - current_instrument)
+                maximum_weight = float(candidate.get("maximum_weight", context["limits"]["single_instrument"]))
+                instrument_headroom = max(0.0, maximum_weight * post_total - current_instrument)
                 if bucket == "individual_stock":
                     stock_headroom = max(0.0, context["limits"]["individual_stocks_total"] * post_total - bucket_values[bucket])
                     instrument_headroom = min(instrument_headroom, stock_headroom)
@@ -208,4 +214,3 @@ def evaluate_sell_triggers(position: dict[str, Any], events: list[dict[str, Any]
         if event_type in allowed and event.get("active"):
             triggers.append({"code": event_type, "message": allowed[event_type], "position_id": position["id"]})
     return triggers
-

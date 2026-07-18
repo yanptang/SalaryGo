@@ -6,6 +6,9 @@
   <meta name="description" content="SalaryGo 本地个人投资决策助手">
   <title>SalaryGo · 本地投资助手</title>
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    .setup-hidden{display:none!important}.onboarding[hidden]{display:none}.onboarding{max-width:900px;margin:20px auto}.onboarding-card{padding:30px}.onboarding-card>h2{font-size:28px;margin:4px 0 10px}.onboarding-intro{color:var(--muted);line-height:1.65;margin-bottom:24px}.form-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 18px}.form-grid label,.onboarding fieldset{font-size:12px;color:var(--muted)}select{width:100%;border:1px solid var(--line);border-radius:10px;padding:12px;background:#fbfcfb;color:var(--ink);font:inherit}.form-grid input,.form-grid select{margin-top:7px}.onboarding fieldset{border:1px solid var(--line);border-radius:12px;margin:20px 0;padding:14px 16px}.onboarding legend{padding:0 6px}.check{display:flex;align-items:center;gap:9px;margin:8px 0;color:var(--ink);font-size:13px}.check input{width:auto}.onboarding-actions{display:flex;align-items:center;gap:15px;margin-top:22px}.onboarding-actions small{color:var(--muted)}@media(max-width:650px){.form-grid{grid-template-columns:1fr}.onboarding-actions{align-items:flex-start;flex-direction:column}}
+  </style>
 </head>
 <body>
   <div class="app-shell">
@@ -28,6 +31,30 @@
         <div class="top-actions"><span id="data-time">尚未刷新</span><button id="refresh-button" class="secondary">刷新测试数据</button></div>
       </header>
       <div id="notice" role="status" aria-live="polite"></div>
+
+      <section id="onboarding" class="onboarding" hidden>
+        <article class="panel onboarding-card">
+          <p class="eyebrow">FIRST-TIME SETUP</p>
+          <h2>先完成一次初始化</h2>
+          <p class="onboarding-intro">直接在页面回答这些问题。保存后会建立你的本地档案和空持仓账本，资料只留在这台 Mac。</p>
+          <form id="onboarding-form">
+            <div class="form-grid">
+              <label>怎么称呼你<input name="display_name" value="用户" required></label>
+              <label>基准币种<select name="base_currency"><option value="CNY">人民币 CNY</option><option value="SEK">瑞典克朗 SEK</option><option value="USD">美元 USD</option><option value="HKD">港币 HKD</option></select></label>
+              <label>投资期限（年）<input name="horizon_years" type="number" min="1" max="50" value="5" required></label>
+              <label>目标年化收益率（%）<input name="target_return" type="number" min="0" max="50" step="0.1" value="10" required></label>
+              <label>最大可接受回撤（%）<input name="max_drawdown" type="number" min="1" max="100" step="1" value="25" required></label>
+              <label>每月通常投入<input name="monthly_amount" type="number" min="1" step="any" value="15000" required></label>
+              <label>每月投入币种<select name="monthly_currency"><option value="CNY">人民币 CNY</option><option value="SEK">瑞典克朗 SEK</option><option value="USD">美元 USD</option><option value="HKD">港币 HKD</option></select></label>
+              <label>应急资金可覆盖（月）<input name="emergency_months" type="number" min="0" max="60" value="6" required></label>
+              <label>市场大跌时的倾向<select name="crash_behavior"><option value="hold">继续持有</option><option value="buy_more">适当加仓</option><option value="reduce">倾向降低风险</option><option value="unsure">暂不确定</option></select></label>
+            </div>
+            <fieldset><legend>目前使用的账户</legend><label class="check"><input name="eastmoney" type="checkbox" checked> 东方财富（A 股、基金、港股通）</label><label class="check"><input name="revolut" type="checkbox" checked> Revolut（美股，SEK / USD）</label></fieldset>
+            <label class="check"><input name="allow_cash" type="checkbox" checked> 时机不合适时，允许保留现金或现金管理类资产</label>
+            <div class="onboarding-actions"><button type="submit">保存并进入 SalaryGo</button><small>目标收益率不是保证；系统不会连接券商或自动交易。</small></div>
+          </form>
+        </article>
+      </section>
 
       <section id="overview" class="view active">
         <div class="hero-grid">

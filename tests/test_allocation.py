@@ -33,6 +33,20 @@ class AllocationTests(unittest.TestCase):
         self.assertEqual(plan["status"], "formal")
         self.assertTrue(all(value / plan["post_total_base"] <= 0.35 + 1e-9 for value in plan["post_instrument_values"].values()))
 
+    def test_candidate_specific_weight_limit_is_never_exceeded(self) -> None:
+        context = allocation_fixture()
+        candidate = next(item for item in context["candidates"] if item["bucket"] == "index_core")
+        candidate["maximum_weight"] = 0.03
+        context["current"]["instrument_values"][candidate["id"]] = 0
+
+        plan = generate_allocation(context)
+
+        self.assertEqual(plan["status"], "formal")
+        self.assertLessEqual(
+            plan["post_instrument_values"].get(candidate["id"], 0),
+            plan["post_total_base"] * 0.03,
+        )
+
     def test_no_meaningless_small_buy_is_emitted(self) -> None:
         context = allocation_fixture()
         for candidate in context["candidates"]:
@@ -76,4 +90,3 @@ class AllocationTests(unittest.TestCase):
 
 if __name__ == "__main__":
     unittest.main()
-

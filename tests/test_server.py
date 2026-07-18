@@ -44,6 +44,8 @@ class LocalServerTests(unittest.TestCase):
 
         self.assertIn("csrf_token", state)
         self.assertIn("SalaryGo", html)
+        self.assertIn('id="onboarding-form"', html)
+        self.assertIn("直接在页面回答这些问题", html)
 
     def test_write_requires_csrf_token(self) -> None:
         request = Request(
