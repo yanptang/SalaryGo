@@ -1,0 +1,11 @@
+{
+  "source": "salarygo-m3-fixture",
+  "quotes": {
+    "cn-index": {"value": 1.12, "currency": "CNY", "as_of": "2026-07-18T15:00:00+08:00"},
+    "cn-fund-nav": {"value": 1.2345, "currency": "CNY", "as_of": "2026-07-18T20:00:00+08:00"},
+    "hk-stock": {"value": 12.5, "currency": "HKD", "as_of": "2026-07-18T16:00:00+08:00"},
+    "us-etf": {"value": 101.0, "currency": "USD", "as_of": "2026-07-18T16:00:00-04:00"},
+    "USD_CNY": {"value": 7.2, "currency": "CNY", "as_of": "2026-07-18T16:00:00+08:00"},
+    "failed-fund": {"error": "模拟上游数据源失败"}
+  }
+}

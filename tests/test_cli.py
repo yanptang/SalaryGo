@@ -8,7 +8,7 @@ from contextlib import redirect_stdout
 from pathlib import Path
 
 from salarygo.cli import main
-from test_profile import example_profile
+from tests.test_profile import example_profile
 
 
 class CliTests(unittest.TestCase):
@@ -41,7 +41,13 @@ class CliTests(unittest.TestCase):
         self.assertEqual(shown["revision"], 1)
         self.assertTrue(Path(backup_payload["path"]).exists())
 
+    def test_health_command_returns_structured_tool_result(self) -> None:
+        status, payload = self.invoke("health")
+
+        self.assertEqual(status, 0)
+        self.assertEqual(payload["ok"], True)
+        self.assertEqual(payload["tool"], "salarygo")
+
 
 if __name__ == "__main__":
     unittest.main()
-

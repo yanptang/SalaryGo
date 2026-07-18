@@ -1,6 +1,14 @@
 # SalaryGo
 
-SalaryGo 是一个本地运行的个人投资决策助手。当前已实现 M1：本地用户档案、确定性校验、约束冲突识别、版本管理、备份与恢复。
+SalaryGo 是一个本地运行的个人投资决策助手。M0–M10 的 MVP 模块均已实现：用户档案、持仓账本、市场数据刷新、候选产品筛选、指数与个股评分、资金分配、Agent 工作流、本地页面和独立回测。
+
+## 启动本地页面
+
+```bash
+python3 run_salarygo.py
+```
+
+然后访问 `http://127.0.0.1:8765`。服务只监听本机地址，不开放局域网或公网。
 
 ## M1 快速开始
 
@@ -30,11 +38,17 @@ PYTHONPATH=src python3 -m salarygo backup
 PYTHONPATH=src python3 -m salarygo restore data/backups/profile-r1-<hash>.json --replace
 ```
 
-运行 M1 自动化验收：
+运行 M1–M5 自动化验收：
 
 ```bash
 PYTHONPATH=src python3 -m unittest discover -s tests -v
 ```
 
-完整字段与约束见 [docs/M1_PROFILE.md](docs/M1_PROFILE.md)。本工具不自动下单，收益目标也不是收益承诺。
+模块设计见 `docs/`，逐模块验收记录见 `docs/acceptance/`。当前自动刷新按钮使用醒目标记的离线验收数据；真实数据可以通过手动录入或实现统一 provider 接口接入，未配置正式数据源时系统不得把测试数据当成真实建议依据。本工具不自动下单，收益目标也不是收益承诺。
+
+Codex 可以先验证本地工具：
+
+```bash
+PYTHONPATH=src python3 -m salarygo health
+```
 

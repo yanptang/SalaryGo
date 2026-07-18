@@ -17,7 +17,7 @@ from salarygo.storage import (
     RevisionConflictError,
     default_data_dir,
 )
-from test_profile import example_profile
+from tests.test_profile import example_profile
 
 
 class ProfileRepositoryTests(unittest.TestCase):

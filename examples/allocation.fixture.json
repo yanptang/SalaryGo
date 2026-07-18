@@ -1,0 +1,27 @@
+{
+  "as_of": "2026-07-18T20:00:00+08:00",
+  "base_currency": "CNY",
+  "new_funds": [{"amount": 15000, "currency": "CNY"}, {"amount": 5000, "currency": "SEK"}],
+  "fx_to_base": {"CNY": 1, "SEK": 0.68, "USD": 7.2},
+  "current": {
+    "bucket_values": {"cash": 5000, "defensive_bond": 15000, "index_core": 60000, "individual_stock": 5000},
+    "instrument_values": {"cn-core": 30000, "us-core": 30000, "watch-stock": 5000},
+    "market_values": {"CN_FUND": 45000, "US": 30000, "CN": 5000, "CASH": 5000},
+    "currency_values": {"CNY": 50000, "USD": 30000, "SEK": 5000}
+  },
+  "target_ranges": {
+    "cash": {"min": 0.05, "max": 0.2},
+    "defensive_bond": {"min": 0.15, "max": 0.3},
+    "index_core": {"min": 0.5, "max": 0.7},
+    "individual_stock": {"min": 0, "max": 0.1}
+  },
+  "limits": {"single_instrument": 0.45, "individual_stocks_total": 0.1, "market": 0.8, "currency": 0.85},
+  "candidates": [
+    {"id": "cn-core", "name": "中国宽基示例", "bucket": "index_core", "platform": "EASTMONEY", "market": "CN_FUND", "asset_currency": "CNY", "funding_currencies": ["CNY"], "eligible": true, "data_fresh": true, "confidence": "high", "temperature": 45, "minimum_trade": 100},
+    {"id": "us-core", "name": "美国宽基示例", "bucket": "index_core", "platform": "REVOLUT", "market": "US", "asset_currency": "USD", "funding_currencies": ["SEK"], "eligible": true, "data_fresh": true, "confidence": "high", "temperature": 65, "minimum_trade": 100},
+    {"id": "bond", "name": "中短债示例", "bucket": "defensive_bond", "platform": "EASTMONEY", "market": "CN_FUND", "asset_currency": "CNY", "funding_currencies": ["CNY"], "eligible": true, "data_fresh": true, "confidence": "high", "temperature": 40, "minimum_trade": 100},
+    {"id": "cash-cny", "name": "人民币现金管理", "bucket": "cash", "platform": "EASTMONEY", "market": "CASH", "asset_currency": "CNY", "funding_currencies": ["CNY"], "eligible": true, "data_fresh": true, "confidence": "high", "minimum_trade": 0},
+    {"id": "cash-sek", "name": "瑞典克朗暂留现金", "bucket": "cash", "platform": "REVOLUT", "market": "CASH", "asset_currency": "SEK", "funding_currencies": ["SEK"], "eligible": true, "data_fresh": true, "confidence": "high", "minimum_trade": 0}
+  ]
+}
+

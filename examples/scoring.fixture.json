@@ -1,0 +1,29 @@
+{
+  "as_of": "2026-07-18T20:00:00+08:00",
+  "index": {
+    "instrument_id": "nasdaq100-demo",
+    "prices": [
+      {"as_of": "2021-07-18T16:00:00-04:00", "close": 100, "source": "fixture-index-source"},
+      {"as_of": "2022-07-18T16:00:00-04:00", "close": 80, "source": "fixture-index-source"},
+      {"as_of": "2023-07-18T16:00:00-04:00", "close": 100, "source": "fixture-index-source"},
+      {"as_of": "2024-07-18T16:00:00-04:00", "close": 130, "source": "fixture-index-source"},
+      {"as_of": "2025-07-18T16:00:00-04:00", "close": 150, "source": "fixture-index-source"},
+      {"as_of": "2026-01-17T16:00:00-05:00", "close": 145, "source": "fixture-index-source"},
+      {"as_of": "2026-06-28T16:00:00-04:00", "close": 165, "source": "fixture-index-source"},
+      {"as_of": "2026-07-18T08:00:00+08:00", "close": 160, "source": "fixture-index-source"}
+    ],
+    "metrics": [
+      {"published_at": "2026-07-18T08:00:00+08:00", "valuation_percentile": 0.75, "volatility_annualized": 0.24, "portfolio_weight": 0.4, "target_weight": 0.6, "source": "fixture-index-metrics"}
+    ]
+  },
+  "stock": {
+    "instrument_id": "watch-stock-demo",
+    "financials": [
+      {"period_end": "2026-03-31", "published_at": "2026-04-30T18:00:00+08:00", "revenue_growth": 0.12, "profit_growth": 0.15, "operating_cash_flow_positive": true, "free_cash_flow_positive": true, "roe": 0.16, "debt_ratio": 0.35, "interest_coverage": 8, "source": "fixture-financial-source"}
+    ],
+    "market": [
+      {"published_at": "2026-07-18T15:00:00+08:00", "valuation_percentile": 0.4, "return_6m": 0.1, "volatility_annualized": 0.28, "source": "fixture-market-source"}
+    ],
+    "red_flags": []
+  }
+}

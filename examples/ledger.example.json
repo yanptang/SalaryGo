@@ -1,0 +1,25 @@
+{
+  "schema_version": 1,
+  "ledger_id": "salarygo-example-ledger",
+  "revision": 0,
+  "created_at": null,
+  "updated_at": null,
+  "base_currency": "CNY",
+  "accounts": [
+    {"id": "eastmoney-a", "name": "东方财富 A 股", "platform": "EASTMONEY", "base_currency": "CNY"},
+    {"id": "eastmoney-hk", "name": "东方财富港股通", "platform": "EASTMONEY", "base_currency": "CNY"},
+    {"id": "revolut", "name": "Revolut", "platform": "REVOLUT", "base_currency": "SEK"}
+  ],
+  "instruments": [
+    {"id": "cn-index", "symbol": "000300", "name": "中国宽基示例", "market": "CN_FUND", "asset_type": "index_fund", "bucket": "index_core", "currency": "CNY"},
+    {"id": "hk-stock", "symbol": "HK-DEMO", "name": "港股示例", "market": "HK_CONNECT", "asset_type": "stock", "bucket": "individual_stock", "currency": "HKD"},
+    {"id": "us-etf", "symbol": "US-DEMO", "name": "美国指数 ETF 示例", "market": "US", "asset_type": "etf", "bucket": "index_core", "currency": "USD"}
+  ],
+  "holdings": [
+    {"id": "holding-cn", "account_id": "eastmoney-a", "instrument_id": "cn-index", "quantity": 1000, "average_cost": 1.0, "cost_currency": "CNY", "current_price": 1.1, "price_currency": "CNY", "price_as_of": "2026-07-18T08:00:00+08:00", "data_source": "fixture", "notes": "示例"},
+    {"id": "holding-hk", "account_id": "eastmoney-hk", "instrument_id": "hk-stock", "quantity": 100, "average_cost": 10, "cost_currency": "HKD", "current_price": 12, "price_currency": "HKD", "price_as_of": "2026-07-18T08:00:00+08:00", "data_source": "fixture", "notes": "示例"},
+    {"id": "holding-us", "account_id": "revolut", "instrument_id": "us-etf", "quantity": 10, "average_cost": 90, "cost_currency": "USD", "current_price": null, "price_currency": "USD", "price_as_of": null, "data_source": null, "notes": "故意缺失价格"}
+  ],
+  "transactions": []
+}
+

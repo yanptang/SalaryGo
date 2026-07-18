@@ -1,0 +1,15 @@
+{
+  "as_of": "2026-07-18T15:00:00+08:00",
+  "slots": [
+    {"id": "nasdaq100", "exposure": "NASDAQ_100", "minimum_aum": 100, "minimum_liquidity_score": 50, "maximum_qdii_premium": 0.03}
+  ],
+  "planned_amounts": {"nasdaq100": 5000},
+  "products": [
+    {"id": "fund-a", "name": "主产品示例", "exposure": "NASDAQ_100", "purchasable": true, "subscription_limit": 50000, "leveraged": false, "inverse": false, "complex_structure": false, "tracking_error": 0.002, "annual_cost": 0.004, "aum": 1000, "liquidity_score": 90, "age_years": 6, "status_as_of": "2026-07-18", "operation_steps": 1, "is_qdii": false},
+    {"id": "fund-b", "name": "备用产品示例", "exposure": "NASDAQ_100", "purchasable": true, "subscription_limit": 20000, "leveraged": false, "inverse": false, "complex_structure": false, "tracking_error": 0.004, "annual_cost": 0.006, "aum": 800, "liquidity_score": 80, "age_years": 5, "status_as_of": "2026-07-18", "operation_steps": 2, "is_qdii": false},
+    {"id": "fund-limited", "name": "限购产品", "exposure": "NASDAQ_100", "purchasable": true, "subscription_limit": 100, "leveraged": false, "inverse": false, "complex_structure": false, "tracking_error": 0.001, "annual_cost": 0.002, "aum": 2000, "liquidity_score": 95, "age_years": 8, "status_as_of": "2026-07-18", "operation_steps": 1, "is_qdii": false},
+    {"id": "fund-premium", "name": "高溢价产品", "exposure": "NASDAQ_100", "purchasable": true, "subscription_limit": 50000, "leveraged": false, "inverse": false, "complex_structure": false, "tracking_error": 0.001, "annual_cost": 0.002, "aum": 2000, "liquidity_score": 95, "age_years": 8, "status_as_of": "2026-07-18", "operation_steps": 1, "is_qdii": true, "premium": 0.08},
+    {"id": "fund-missing", "name": "数据缺失产品", "exposure": "NASDAQ_100", "purchasable": true, "subscription_limit": 50000, "leveraged": false, "inverse": false, "complex_structure": false, "tracking_error": null, "annual_cost": 0.002, "aum": 2000, "liquidity_score": 95, "age_years": 8, "status_as_of": "2026-07-18", "operation_steps": 1, "is_qdii": false}
+  ]
+}
+

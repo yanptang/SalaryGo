@@ -1,0 +1,2 @@
+"""SalaryGo automated acceptance tests."""
+

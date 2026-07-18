@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="SalaryGo 本地个人投资决策助手">
+  <title>SalaryGo · 本地投资助手</title>
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <a class="brand" href="#overview" aria-label="SalaryGo 首页"><span>S</span><strong>SalaryGo</strong></a>
+      <nav aria-label="主导航">
+        <button data-view="overview" class="active">组合总览</button>
+        <button data-view="holdings">持仓账本</button>
+        <button data-view="strategy">本月策略</button>
+        <button data-view="history">历史记录</button>
+        <button data-view="candidates">候选池</button>
+        <button data-view="backtest">回测分析</button>
+        <button data-view="settings">设置</button>
+      </nav>
+      <div class="local-badge"><i></i>仅保存在这台 Mac</div>
+    </aside>
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">PERSONAL INVESTMENT CONSOLE</p><h1 id="page-title">组合总览</h1></div>
+        <div class="top-actions"><span id="data-time">尚未刷新</span><button id="refresh-button" class="secondary">刷新测试数据</button></div>
+      </header>
+      <div id="notice" role="status" aria-live="polite"></div>
+
+      <section id="overview" class="view active">
+        <div class="hero-grid">
+          <article class="hero-card"><p>组合已知市值</p><strong id="total-value">—</strong><span id="coverage">等待录入持仓</span></article>
+          <article class="metric-card"><p>风险资产占比</p><strong id="risk-share">—</strong><span>指数核心 + 个股增强</span></article>
+          <article class="metric-card"><p>最近策略</p><strong id="latest-strategy">暂无</strong><span id="latest-status">等待第一次生成</span></article>
+        </div>
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><h2>资金桶配置</h2><span>当前已知市值</span></div><div id="bucket-chart" class="bar-chart empty">暂无数据</div></article>
+          <article class="panel"><div class="panel-head"><h2>账户分布</h2><span>按平台与账户</span></div><div id="account-chart" class="bar-chart empty">暂无数据</div></article>
+          <article class="panel"><div class="panel-head"><h2>币种分布</h2><span>按资产计价币种</span></div><div id="currency-chart" class="bar-chart empty">暂无数据</div></article>
+          <article class="panel"><div class="panel-head"><h2>组合市值历史</h2><span>持仓更新时记录</span></div><canvas id="history-chart" height="130" aria-label="组合市值历史曲线"></canvas><div id="history-empty" class="empty-state">暂无历史</div></article>
+        </div>
+        <article class="panel"><div class="panel-head"><h2>数据健康度</h2><span>建议前必须全部检查</span></div><div id="health-list" class="health-list"></div></article>
+      </section>
+
+      <section id="holdings" class="view">
+        <div class="section-actions"><p>实际成交后在这里更新；系统不会连接券商或自动下单。</p><button id="add-holding">新增持仓</button></div>
+        <article class="panel table-wrap"><table><thead><tr><th>账户</th><th>标的</th><th>数量</th><th>成本</th><th>当前价</th><th>市值</th><th>更新时间</th><th></th></tr></thead><tbody id="holding-rows"></tbody></table><div id="holdings-empty" class="empty-state">还没有持仓，请先在设置中保存账本。</div></article>
+      </section>
+
+      <section id="strategy" class="view">
+        <div class="strategy-layout">
+          <article class="panel prompt-card"><p class="eyebrow">MONTHLY DECISION</p><h2>告诉 Agent 这次有多少钱</h2><p>例如：“这个月投入 15000 人民币，Revolut 还有 5000 瑞典克朗。”</p><textarea id="strategy-text" rows="5" placeholder="输入本月新增可投资资金和币种"></textarea><button id="generate-strategy">生成并保存策略</button><small>金额由确定性引擎计算；数据不足或风控失败时不会生成正式建议。</small></article>
+          <article class="panel" id="strategy-result"><div class="empty-state">等待本月投资请求</div></article>
+        </div>
+      </section>
+
+      <section id="history" class="view"><article class="panel"><div class="panel-head"><h2>历史策略</h2><span>建议与实际执行分开保存</span></div><div id="strategy-history" class="timeline empty">暂无策略</div></article></section>
+
+      <section id="candidates" class="view"><article class="panel"><div class="panel-head"><h2>候选池</h2><span>每个席位一个主产品、最多一个备用</span></div><div id="candidate-list" class="candidate-list empty">尚未建立候选池</div></article><article class="panel"><div class="panel-head"><h2>最新指数水温</h2><span>分项解释</span></div><div id="temperature-chart" class="bar-chart empty">暂无评分</div></article></section>
+
+      <section id="backtest" class="view">
+        <article class="panel prompt-card"><p class="eyebrow">RULE VALIDATION</p><h2>独立回测</h2><p>比较固定定投、固定配置、水温倾斜和防守策略。测试数据只用于验证工具，不代表真实历史。</p><button id="run-backtest">运行内置验收回测</button></article>
+        <article class="panel" id="backtest-result"><div class="empty-state">尚未运行</div></article>
+      </section>
+
+      <section id="settings" class="view">
+        <div class="content-grid">
+          <article class="panel"><div class="panel-head"><h2>用户档案</h2><span>结构化 JSON</span></div><textarea id="profile-json" class="code-input" rows="18" spellcheck="false"></textarea><button id="save-profile">校验并保存</button></article>
+          <article class="panel"><div class="panel-head"><h2>持仓账本</h2><span>结构化 JSON</span></div><textarea id="ledger-json" class="code-input" rows="18" spellcheck="false"></textarea><button id="save-ledger">校验并保存</button></article>
+        </div>
+        <article class="panel"><div class="panel-head"><h2>分配与风控上下文</h2><span>候选产品、目标区间和上限</span></div><textarea id="context-json" class="code-input" rows="14" spellcheck="false"></textarea><button id="save-context">验证并保存</button></article>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="holding-dialog"><form method="dialog" id="holding-form"><h2>编辑持仓</h2><input type="hidden" name="id"><label>账户<select name="account_id" required></select></label><label>标的<select name="instrument_id" required></select></label><label>持仓数量<input name="quantity" type="number" step="any" min="0" required></label><label>平均成本<input name="average_cost" type="number" step="any" min="0" required></label><label>当前价格（可留空）<input name="current_price" type="number" step="any" min="0"></label><div class="dialog-actions"><button value="cancel" class="secondary">取消</button><button value="save" id="holding-save">保存</button></div></form></dialog>
+  <script src="/app.js" defer></script>
+</body>
+</html>
