@@ -1,0 +1,21 @@
+[build-system]
+requires = ["setuptools>=69"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "salarygo"
+version = "0.1.0"
+description = "Local, deterministic building blocks for the SalaryGo investment assistant"
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "Private use" }
+
+[project.scripts]
+salarygo = "salarygo.cli:main"
+
+[tool.setuptools]
+package-dir = { "" = "src" }
+
+[tool.setuptools.packages.find]
+where = ["src"]
+

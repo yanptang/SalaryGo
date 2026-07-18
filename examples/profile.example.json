@@ -1,0 +1,56 @@
+{
+  "schema_version": 1,
+  "profile_id": "73e37398-bbc2-4c6c-af67-2f687cdff442",
+  "revision": 0,
+  "created_at": null,
+  "updated_at": null,
+  "user": {
+    "display_name": "示例用户",
+    "base_currency": "CNY"
+  },
+  "investment_plan": {
+    "horizon_years": 5,
+    "target_annual_return": 0.1,
+    "max_drawdown": 0.25,
+    "monthly_investment": {
+      "amount": 15000,
+      "currency": "CNY"
+    },
+    "crash_behavior": "hold",
+    "allow_cash": true
+  },
+  "emergency_fund": {
+    "status": "adequate",
+    "months_covered": 6
+  },
+  "planned_uses": [],
+  "accounts": [
+    {
+      "id": "eastmoney",
+      "name": "东方财富",
+      "markets": ["CN", "HK_CONNECT", "CN_FUND"],
+      "currencies": ["CNY", "HKD"]
+    },
+    {
+      "id": "revolut",
+      "name": "Revolut",
+      "markets": ["US"],
+      "currencies": ["SEK", "USD"]
+    }
+  ],
+  "funding_currencies": ["CNY", "SEK"],
+  "concentration_limits": {
+    "single_stock": 0.1,
+    "individual_stocks_total": 0.15,
+    "market": 0.8,
+    "sector": 0.35,
+    "currency": 0.8
+  },
+  "exclusions": {
+    "asset_types": ["crypto", "gold_fund", "leveraged_fund", "inverse_fund"],
+    "industries": [],
+    "companies": [],
+    "products": []
+  }
+}
+

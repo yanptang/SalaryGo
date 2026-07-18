@@ -1,0 +1,16 @@
+# SalaryGo personal data must never be committed.
+/data/private/
+/data/backups/
+
+# Local overrides and Python artifacts.
+.env
+.venv/
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.coverage
+htmlcov/
+dist/
+build/
+*.egg-info/
+
